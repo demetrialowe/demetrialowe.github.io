@@ -225,6 +225,7 @@ function getProfMod() {
 function calculateSkills() {
 	if (document.getElementById("dex").innerHTML != "") {
 		document.getElementById("acrobatics").innerHTML=calculateMods("dex");
+		proficiencyClick(document.getElementById("skill1"));
 		document.getElementById("sleight of hand").innerHTML=calculateMods("dex");
 		document.getElementById("stealth").innerHTML=calculateMods("dex");
 	}
@@ -251,9 +252,132 @@ function calculateSkills() {
 		document.getElementById("performance").innerHTML=calculateMods("cha");
 		document.getElementById("persuasion").innerHTML=calculateMods("cha");
 	}
+	
 }
 
 function proficiencyClick(proficiency) {
 	console.log(proficiency.checked);
-	console.log(proficiency.value);
+	skillName = proficiency.value;
+	skillValue= parseInt(document.getElementById(proficiency.value).innerHTML);
+	if(document.getElementById(proficiency.value).innerHTML == "") {
+		skillValue=0;
+		console.log("Since this was empty, I put a 0 here");
+	}
+	console.log(skillValue);
+	
+
+	//I want to .......... know if the box is checked
+	// if it is checked, I would like to add the proficiency bonus to the value there
+	//HOWEVER I also want to........ make sure that it updates correctly when I swap the values using drop
+	//I think this means that I have to call this in calculate skills/can I use calculate mods?
+
+	if(proficiency.checked) {
+		skillRoot=checkSkillRoot(skillName);
+		skillValue = calculateMods(skillRoot)+2;
+		if (document.getElementById(proficiency.value).innerHTML == "") {skillValue = 2};
+		console.log("Since box is checked, I'm adding 2. My new skillValue is now: " + skillValue);
+	}
+	if(!proficiency.checked && document.getElementById(proficiency.value).innerHTML != "") {
+		skillRoot=checkSkillRoot(skillName);
+		skillValue = calculateMods(skillRoot);
+		console.log("Since box is NOT checked, I'm subtracting 2. My new skillValue is now: " + skillValue);
+	}
+
+	document.getElementById(skillName).innerHTML = skillValue;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function proficiencyClick2(proficiency) {
+	if(proficiency.checked) {
+		if(document.getElementById(proficiency.value).innerHTML=="") {
+			document.getElementById(proficiency.value).innerHTML = 2;
+			proficiency.profBonusOn=true;
+		}
+		else {
+			proficiency.profBonusOn=true;
+			//rootStat = checkSkillRoot(proficiency.value);
+			calculateSkills();
+			newVal = parseInt(document.getElementById(proficiency.value).innerHTML) + 2;
+			document.getElementById(proficiency.value).innerHTML = newVal;
+		}
+	}
+	else {
+		proficiency.profBonusOn=false;
+		//rootStat = checkSkillRoot(proficiency.value);
+		calculateSkills();
+		// newVal = parseInt(document.getElementById(proficiency.value).innerHTML) -2;
+		// document.getElementById(proficiency.value).innerHTML = newVal;
+		}
+}
+
+		// if (document.getElementById(proficiency.value).innerHTML == 2) {
+		// 	document.getElementById(proficiency.Value).innerHTML = 0;
+		// }
+//This works soooort of but not well, the issue is really that it doesn't update
+
+
+	// 	console.log(proficiency.checked);
+	// console.log(proficiency.value);
+	// proficiency.profBonusOn = proficiency.checked;
+	// console.log(proficiency.profBonusOn);
+
+
+// savePB = document.getElementById(proficiency.value).innerHTML;
+// 			document.getElementById(proficiency.value).innerHTML = "";
+// 			calculateMods();
+
+function checkSkillRoot(skill) {
+	StrArray = ["athletics"];
+	DexArray = ["acrobatics","sleight of hand", "stealth"];
+	IntelArray = ["arcana","history","investigation","nature", "religion"];
+	WisArray = ["animal handling", "insight", "medicine","perception","survival"];
+	ChaArray = ["deception", "intimidation","performance","persuasion"];
+	if(StrArray.includes(skill)) return "str";
+	if(DexArray.includes(skill)) return "dex";
+	if(IntelArray.includes(skill)) return "intel";
+	if(WisArray.includes(skill)) return "wis";
+	if(ChaArray.includes(skill)) return "cha";
+	else return "invalid skill";
 }
