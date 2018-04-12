@@ -252,3 +252,8 @@ function calculateSkills() {
 		document.getElementById("persuasion").innerHTML=calculateMods("cha");
 	}
 }
+
+function proficiencyClick(proficiency) {
+	console.log(proficiency.checked);
+	console.log(proficiency.value);
+}

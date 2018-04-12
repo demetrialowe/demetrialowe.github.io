@@ -363,62 +363,64 @@
 
 		<button id="statSave" onclick = "saveStats()">Save Stats</button>
 
-		<table id = "skillTable">
-			<tr>
-				<td><input type="checkbox" name="skills" value="acrobatics">Acrobatics</td><td id="acrobatics"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="animal handling">Animal Handling</td><td id="animal handling"></td>
-			</tr>
+		<form>
+			<table id = "skillTable">
+				<tr>
+					<td><input type="checkbox" name="acrobatics" value="acrobatics" onclick="proficiencyClick(this)">Acrobatics</td><td id="acrobatics"></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="animal handling" value="animal handling">Animal Handling</td><td id="animal handling"></td>
+				</tr>
 
-			<tr>
-				<td><input type="checkbox" name="skills" value="arcana">Arcana</td><td id="arcana"></td></tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="athletics">Athletics</td><td id="athletics"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="deception">Deception</td><td id="deception"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="history">History</td><td id="history"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="insight">Insight</td><td id="insight"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="intimidation">Intimidation</td><td id="intimidation"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="investigation">Investigation</td><td id="investigation"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="medicine">Medicine</td><td id="medicine"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="nature">Nature</td><td id="nature"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="perception">Perception</td><td id="perception">
-				</td></tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="performance">Performance</td><td id="performance">
-				</td></tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="persuasion">Persuasion</td><td id="persuasion">
-				</td></tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="religion">Religion</td><td id="religion"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="sleight of hand">Sleight of Hand</td><td id="sleight of hand"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="stealth">Stealth</td><td id="stealth"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="skills" value="survival">Survival</td><td id="survival"></td>
-			</tr>
-		</table>
+				<tr>
+					<td><input type="checkbox" name="arcana" value="arcana">Arcana</td><td id="arcana"></td></tr>
+				<tr>
+						<td><input type="checkbox" name="athletics" value="athletics">Athletics</td><td id="athletics"></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="deception" value="deception">Deception</td><td id="deception"></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="history" value="history">History</td><td id="history"></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="insight" value="insight">Insight</td><td id="insight"></td>					
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="intimidation" value="intimidation">Intimidation</td><td id="intimidation"></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="investigation" value="investigation">Investigation</td><td id="investigation"></td>
+				</tr>
+					<tr>
+						<td><input type="checkbox" name="medicine" value="medicine">Medicine</td><td id="medicine"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="nature" value="nature">Nature</td><td id="nature"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="perception" value="perception">Perception</td><td id="perception"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="performance" value="performance">Performance</td><td id="performance"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="persuasion" value="persuasion">Persuasion</td><td id="persuasion">
+						</td></tr>
+					<tr>
+						<td><input type="checkbox" name="religion" value="religion">Religion</td><td id="religion"></td>
+					</tr>								
+					<tr>
+						<td><input type="checkbox" name="sleight of hand" value="sleight of hand">Sleight of Hand</td><td id="sleight of hand"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="stealth" value="stealth">Stealth</td><td id="stealth"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="survival" value="survival">Survival</td><td id="survival"></td>								
+					</tr>
+				</table>
+			</form>
 
 
 	</div>
