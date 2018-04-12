@@ -1,0 +1,437 @@
+<!DOCType HTML>
+
+<html>
+<head>
+	<title>Testing JavaScript</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+	<script type="text/javascript" src="statFunctions.js"></script>
+	<div class="menu">
+		<div class="dropdown-mine">
+			<span>Roll Stats</span>
+			<div class="dropdown-content">
+				<button onclick="rollStat3d6()">3d6</button>
+				<button onclick="rollStat4d6Drop()">4d6 Drop Lowest</button>
+				<button onclick="insertArray()">Standard Array Input</button>
+			</div>
+		</div>
+		<p class="menu-content">Hi I'm another menu option</p>
+		<p class="menu-content">Me too!</p>
+	</div>
+	<br>
+
+	<div class="column">
+		<select name="classOptions" id="classOptions">
+			<option selected="selected" value ="chooseClass">Choose a class</option>
+			<option value="barbarianClass">Barbarian</option>
+			<option value="bardClass">Bard</option>
+			<option value="clericClass">Cleric</option>
+			<option value="druidClass">Druid</option>
+			<option value="fighterClass">Fighter</option>
+			<option value="monkClass">Monk</option>
+			<option value="paladinClass">Paladin</option>
+			<option value="rangerClass">Ranger</option>
+			<option value="rogueClass">Rogue</option>
+			<option value="sorcererClass">Sorcerer</option>
+			<option value="warlockClass">Warlock</option>
+			<option value="wizardClass">Wizard</option>
+		</select>
+		<p id="classTest"></p>
+
+		<div id="barbarianClass" class="charClasses">
+			<p> Hit Die: d12</p>
+			<p> Skill Proficiencies: Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival.</p>
+			<p> Saving Throws: Strength, Constitution</p>
+
+			<table>
+				<tr>
+					<th>Level</th>
+					<th>Proficiency Bonus</th>
+					<th>Features</th>
+					<th>Rages</th>
+					<th>Rage Damage</th>
+				</tr>
+				<tr>
+					<td>1st</td>
+					<td>+2</td>
+					<td>Rage, Unarmored Defense</td>
+					<td>2</td>
+					<td>+2</td>
+				</tr>
+				<tr>
+					<td>2nd</td>
+					<td>+2</td>
+					<td>Reckless Attack</td>
+					<td>2</td>
+					<td>+2</td>
+				</tr>
+				<tr>
+					<td>3rd</td>
+					<td>+2</td>
+					<td>Primal Path</td>
+					<td>3</td>
+					<td>+2</td>
+				</tr>
+				<tr>
+					<td>4th</td>
+					<td>+2</td>
+					<td>Ability Score Improvement</td>
+					<td>3</td>
+					<td>+2</td>
+				</tr>
+				<tr>
+					<td>5th</td>
+					<td>+3</td>
+					<td>Extra Attack, Fast Movement</td>
+					<td>3</td>
+					<td>+2</td>
+				</tr>
+			</table>
+		</div>
+		<div id="bardClass" class="charClasses">
+			<p> Hit Die: d8</p>
+			<p> Skill Proficiencies: Choose any three.</p>
+			<p> Saving Throws: Dexterity, Charisma</p>
+
+			<table>
+				<tr>
+					<th>Level</th>
+					<th>Proficiency Bonus</th>
+					<th>Features</th>
+					<th>Cantrips Known</th>
+					<th>Spells Known</th>
+					<th>Spell Slots</th>
+				<tr>
+					<td>1st</td>
+					<td>+2</td>
+					<td>Spellcasting, Bardic Inspiration (d6)</td>
+					<td>2</td>
+					<td>4</td>
+					<td>1st Level: 2</td>
+				</tr>
+				<tr>
+					<td>2nd</td>
+					<td>+2</td>
+					<td>Jack of All Trades, Song of Rest (d6)</td>
+					<td>2</td>
+					<td>5</td>
+					<td>1st Level: 3</td>
+				</tr>
+				<tr>
+					<td>3rd</td>
+					<td>+2</td>
+					<td>Bard College, Expertise</td>
+					<td>2</td>
+					<td>6</td>
+					<td><p>1st Level: 4</p><p>2nd Level: 2</p></td>
+				</tr>
+				<tr>
+					<td>4th</td>
+					<td>+2</td>
+					<td>Ability Score Improvement</td>
+					<td>3</td>
+					<td>7</td>
+					<td><p>1st Level: 4</p><p>2nd Level: 3</p></td>
+				</tr>
+				<tr>
+					<td>5th</td>
+					<td>+3</td>
+					<td>Bardic Inspiration (d8), Font of Inspiration</td>
+					<td>3</td>
+					<td>8</td>
+					<td><p>1st Level: 4</p><p>2nd Level: 3</p><p>3rd Level: 2</td>
+				</tr>
+			</table>
+		</div>
+		<div id="clericClass" class="charClasses">
+			<p> Hit Die: d8</p>
+			<p> Skill Proficiencies: Choose two from History, Insight, Medicine, Persuasion, and Religion.</p>
+			<p> Saving Throws: Wisdom, Charisma</p>
+
+			<table>
+				<tr>
+					<th>Level</th>
+					<th>Proficiency Bonus</th>
+					<th>Features</th>
+					<th>Cantrips Known</th>
+					<th>Spell Slots</th>
+				<tr>
+					<td>1st</td>
+					<td>+2</td>
+					<td>Spellcasting, Divine Domain</td>
+					<td>3</td>
+					<td>1st Level: 2</td>
+				</tr>
+				<tr>
+					<td>2nd</td>
+					<td>+2</td>
+					<td>Channel Divinity (1/rest), Divine Domain feature</td>
+					<td>3</td>
+					<td>1st Level: 3</td>
+				</tr>
+				<tr>
+					<td>3rd</td>
+					<td>+2</td>
+					<td>--</td>
+					<td>3</td>
+					<td><p>1st Level: 4</p><p>2nd Level: 2</p></td>
+				</tr>
+				<tr>
+					<td>4th</td>
+					<td>+2</td>
+					<td>Ability Score Improvement</td>
+					<td>4</td>
+					<td><p>1st Level: 4</p><p>2nd Level: 3</p></td>
+				</tr>
+				<tr>
+					<td>5th</td>
+					<td>+3</td>
+					<td>Destroy Undead (CR 1/2)</td>
+					<td>4</td>
+					<td><p>1st Level: 4</p><p>2nd Level: 3</p><p>3rd Level: 2</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="druidClass" class="charClasses">
+			<p> Hit Die: d8</p>
+			<p> Skill Proficiencies: Choose any three.</p>
+			<p> Saving Throws: Dexterity, Charisma</p>
+
+			<table>
+				<tr>
+					<th>Level</th>
+					<th>Proficiency Bonus</th>
+					<th>Features</th>
+					<th>Cantrips Known</th>
+					<th>Spell Slots</th>
+				<tr>
+					<td>1st</td>
+					<td>+2</td>
+					<td>Druidic, Spellcasting</td>
+					<td>2</td>
+					<td>1st Level: 2</td>
+				</tr>
+				<tr>
+					<td>2nd</td>
+					<td>+2</td>
+					<td>Wild Shape, Druid Circle</td>
+					<td>2</td>
+					<td>1st Level: 3</td>
+				</tr>
+				<tr>
+					<td>3rd</td>
+					<td>+2</td>
+					<td>--</td>
+					<td>2</td>
+					<td><p>1st Level: 4</p><p>2nd Level: 2</p></td>
+				</tr>
+				<tr>
+					<td>4th</td>
+					<td>+2</td>
+					<td>Wild Shape improvement, Ability Score Improvement</td>
+					<td>3</td>
+					<td><p>1st Level: 4</p><p>2nd Level: 3</p></td>
+				</tr>
+				<tr>
+					<td>5th</td>
+					<td>+3</td>
+					<td>--</td>
+					<td>3</td>
+					<td><p>1st Level: 4</p><p>2nd Level: 3</p><p>3rd Level: 2</td>
+				</tr>
+			</table>
+		</div>
+
+		</div>
+		<div id="fighterClass" class="charClasses"></div>
+		<div id="monkClass" class="charClasses"></div>
+		<div id="paladinClass" class="charClasses"></div>
+		<div id="rangerClass" class="charClasses"></div>
+		<div id="rogueClass" class="charClasses"></div>
+		<div id="sorcererClass" class="charClasses"></div>
+		<div id="warlockClass" class="charClasses"></div>
+		<div id="wizardClass" class="charClasses"></div>
+
+
+
+	</div>
+
+	<script> //this lets the different class divs show, and other things
+		$("select").change(function() {
+			$(".charClasses").hide();
+			$('#' + $(this).val()).show();
+		});
+
+		$("select").change(function() {
+			charClass = $(this).val();
+			//console.log(charClass);
+		});
+
+		function download(text, name, type) {
+			var a = document.createElement("a");
+			var file = new Blob([text], {type: type});
+			a.href = URL.createObjectURL(file);
+			a.download = name;
+			a.click();
+		}
+
+		function savechar() {
+			var char = new Object();
+			char.name = document.getElementById("charName").value;
+			char.stats = charStats;
+			char.skills = charSkills;
+			char.class = charClass;
+			char.level = charLevel;
+			console.log(char);
+			var jsonData = JSON.stringify(char);
+  			// now save json data to file
+  			download(jsonData, JSON.stringify(char.name) + ".json", 'text/plain');  /*'char.json'*/
+		}
+
+		function loadChar() {
+			console.log("load character from JSON object");
+			var x = document.getElementById("loadchar");
+  			//console.log(x);
+ 	 		if ('files' in x && x.files.length == 1) {
+	  			var file = x.files[0];
+			    // lots of indirection here:
+			    // create a file reader, and then add an onload handler
+			    // when the file loads, we will get the text of the file
+			    // and then log it
+			    var reader = new FileReader();
+			    reader.onload = function(e) {
+			    	var text = reader.result;
+			    	console.log(text);
+			    	var char = JSON.parse(text);
+			    	console.log(char);
+			      // Now load the values out of our saved JSON file
+			      // use JQuery to change all of the values
+			      $("#charName").val(char.name);
+			      //load stats into table
+			      $("#str").html(char.stats[0]);
+			      $("#dex").html(char.stats[1]);
+			      $("#con").html(char.stats[2]);
+			      $("#intel").html(char.stats[3]);
+			      $("#wis").html(char.stats[4]);
+			      $("#cha").html(char.stats[5]);
+			      //load skills into table
+			      calculateSkills();
+			      //load class
+			      $("#classOptions").val(char.class).change();
+			     document.getElementById("loadchar").val="";
+			  	}
+			    // This calls the read function, which triggers the callback
+			    // located above. It's a really indirect way to do things,
+			    // and is one of the reasons I find Javascript to be frustrating.
+			    reader.readAsText(file);
+
+			    $("#loadcharform")[0].reset();
+
+			}
+		}
+	</script>
+
+
+	<div class = "column">
+		<table id="statTable">
+			<tr><td class="StatHover">STR<span class ="StatHoverText"> <strong>Strength</strong>: This is your character's raw physical power. It is used in the skill check <i>Athletics</i>. It is also used to determine both whether you hit and how much damage you do using any melee weapons that are not based in finesse (such as <i> battle axes, longswords, and clubs</i>).</span></td><td id = "str" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></td></tr>
+
+			<tr><td class ="StatHover">DEX<span class ="StatHoverText"> <strong>Dexterity</strong>: This is your character's ability to be quick on their feet. It is used in the skill checks <i>Acrobatics, Sleight of Hand,</i> and <i>Stealth</i>. It is also used to determine both wether you hit and how much damage you do using finesse and ranged weapons (such as <i>crossbows, scimitars, and daggers</i>). It also factors into how quickly your character can act in combat(<i>Initiative</i>), as well as how hard they are to hit (<i>AC</i>).</span></td><td id = "dex" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></td></tr>
+
+			<tr><td class ="StatHover">CON<span class ="StatHoverText"><strong>Constitution</strong>: This is your character's physical wellbeing. It is used to determine your character's health (<i>Hit Points</i>).</span></td><td id = "con"  draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></td></tr>
+
+			<tr><td class ="StatHover">INT<span class ="StatHoverText"> <strong>Intelligence</strong>: This is your character's book smarts. It is used in the skill checks <i>Arcana, History, Investigation, Nature,</i> and <i>Religion</i>. If you are playing a <i>Wizard</i>, it will also factor into your character's spellcasting ability.</span></td><td id = "intel"  draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></td></tr>
+
+			<tr><td class ="StatHover">WIS<span class ="StatHoverText"><strong>Wisdom</strong>: This is your character's street smarts. It is used in the skill checks <i>Animal Handling, Insight, Medicine, Perception,</i> and <i>Survival</i>. If you are playing a <i>Cleric, Druid,</i> or <i>Ranger</i>, it will also factor into your character's spellcasting ability.</span></td><td id = "wis"  draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></td></tr>
+
+			<tr><td class ="StatHover">CHA<span class ="StatHoverText"><strong>Charisma</strong>: This is your character's charm. It is used in the skill checks <i>Deception, Intimidation, Performance,</i> and <i>Persuasion</i>. If you are playing <i>Bard, Paladin, Sorcerer</i> or <i>Warlock</i>, it will also factor into your character's spellcasting ability.</span></td><td id = "cha"  draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></td></tr>
+		</table>
+
+		<table id="arrayBox" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+			<td id="drag1" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="drag2" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="drag3" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="drag4" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="drag5" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="drag6" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+		</table>
+
+		<button id="statSave" onclick = "saveStats()">Save Stats</button>
+
+		<table id = "skillTable">
+			<tr>
+				<td><input type="checkbox" name="skills" value="acrobatics">Acrobatics</td><td id="acrobatics"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="animal handling">Animal Handling</td><td id="animal handling"></td>
+			</tr>
+
+			<tr>
+				<td><input type="checkbox" name="skills" value="arcana">Arcana</td><td id="arcana"></td></tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="athletics">Athletics</td><td id="athletics"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="deception">Deception</td><td id="deception"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="history">History</td><td id="history"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="insight">Insight</td><td id="insight"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="intimidation">Intimidation</td><td id="intimidation"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="investigation">Investigation</td><td id="investigation"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="medicine">Medicine</td><td id="medicine"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="nature">Nature</td><td id="nature"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="perception">Perception</td><td id="perception">
+				</td></tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="performance">Performance</td><td id="performance">
+				</td></tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="persuasion">Persuasion</td><td id="persuasion">
+				</td></tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="religion">Religion</td><td id="religion"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="sleight of hand">Sleight of Hand</td><td id="sleight of hand"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="stealth">Stealth</td><td id="stealth"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="skills" value="survival">Survival</td><td id="survival"></td>
+			</tr>
+		</table>
+
+
+	</div>
+	
+	<div class="column">
+		<input type="text" id="charName">
+		<button onclick="savechar()">Save</button>
+		  <input type="button" value="Load Character" onclick="document.getElementById('loadchar').click();" />
+		<form id="loadcharform">
+ 			<input type="file" multiple style="display:none;" id="loadchar" name="file" onchange="loadChar(); "/> 
+ 		</form>
+	</div>
+
+</body>
+</html>
