@@ -2,6 +2,7 @@ var charStats = [];
 var charSkills = [];
 var charClass = "";
 var charLevel = 1;
+var chosenProf = [];
 
 function rollStat3d6() {
 	console.log("Rolling 3d6");
@@ -224,69 +225,39 @@ function getProfMod() {
 }
 
 function calculateSkills() {
-	if (document.getElementById("dex").innerHTML != "") {
-		document.getElementById("acrobatics").innerHTML=calculateMods("dex");
-		proficiencyClick(document.getElementById("skill1"));
-		document.getElementById("sleight of hand").innerHTML=calculateMods("dex");
-		proficiencyClick(document.getElementById("skill16"));
-		document.getElementById("stealth").innerHTML=calculateMods("dex");
-		proficiencyClick(document.getElementById("skill17"));
-	}
-	if (document.getElementById("str").innerHTML != "") {
-		document.getElementById("athletics").innerHTML=calculateMods("str");
-		proficiencyClick(document.getElementById("skill4"));
-	}
-	if (document.getElementById("intel").innerHTML != "") {
-		document.getElementById("arcana").innerHTML=calculateMods("intel");
-		proficiencyClick(document.getElementById("skill3"));
-		document.getElementById("history").innerHTML=calculateMods("intel");
-		proficiencyClick(document.getElementById("skill6"));
-		document.getElementById("investigation").innerHTML=calculateMods("intel");
-		proficiencyClick(document.getElementById("skill9"));
-		document.getElementById("nature").innerHTML=calculateMods("intel");
-		proficiencyClick(document.getElementById("skill11"));
-		document.getElementById("religion").innerHTML=calculateMods("intel");
-		proficiencyClick(document.getElementById("skill15"));
-	}
-	if (document.getElementById("wis").innerHTML != "") {
-		document.getElementById("animal handling").innerHTML=calculateMods("wis");
-		proficiencyClick(document.getElementById("skill2"));
-		document.getElementById("insight").innerHTML=calculateMods("wis");
-		proficiencyClick(document.getElementById("skill7"));
-		document.getElementById("medicine").innerHTML=calculateMods("wis");
-		proficiencyClick(document.getElementById("skill10"));
-		document.getElementById("perception").innerHTML=calculateMods("wis");
-		proficiencyClick(document.getElementById("skill12"));
-		document.getElementById("survival").innerHTML=calculateMods("wis");
-		proficiencyClick(document.getElementById("skill18"));
-	}
-	if (document.getElementById("cha").innerHTML != "") {
-		document.getElementById("deception").innerHTML=calculateMods("cha");
-		proficiencyClick(document.getElementById("skill5"));
-		document.getElementById("intimidation").innerHTML=calculateMods("cha");
-		proficiencyClick(document.getElementById("skill8"));
-		document.getElementById("performance").innerHTML=calculateMods("cha");
-		proficiencyClick(document.getElementById("skill13"));
-		document.getElementById("persuasion").innerHTML=calculateMods("cha");
-		proficiencyClick(document.getElementById("skill14"));
-	}
-	
+		proficiencyClick(document.getElementById("skill1")); //acrobatics
+		proficiencyClick(document.getElementById("skill16")); //sleight of hand
+		proficiencyClick(document.getElementById("skill17")); //stealth
+		proficiencyClick(document.getElementById("skill4")); //athletics
+		proficiencyClick(document.getElementById("skill3")); //arcana
+		proficiencyClick(document.getElementById("skill6")); //history
+		proficiencyClick(document.getElementById("skill9")); //investigation
+		proficiencyClick(document.getElementById("skill11")); //nature
+		proficiencyClick(document.getElementById("skill15")); //religion
+		proficiencyClick(document.getElementById("skill2")); //animal
+		proficiencyClick(document.getElementById("skill7")); //insight
+		proficiencyClick(document.getElementById("skill10")); //medicine
+		proficiencyClick(document.getElementById("skill12")); //perception
+		proficiencyClick(document.getElementById("skill18")); //survival
+		proficiencyClick(document.getElementById("skill5")); //deception
+		proficiencyClick(document.getElementById("skill8")); //intimidation
+		proficiencyClick(document.getElementById("skill13")); //performance
+		proficiencyClick(document.getElementById("skill14")); //persuasion
 }
 
 
 function proficiencyClick(proficiency) {
-	console.log(proficiency);
 	skillName = proficiency.value;
-	console.log(skillName);
 	skillRoot=checkSkillRoot(skillName);
 	skillValue = "";
+	profMod = getProfMod();
 	if (proficiency.checked) {
 		if(hasAttrVal(skillRoot)) {
-			skillValue = calculateMods(skillRoot)+2;
+			skillValue = calculateMods(skillRoot)+profMod;
 			console.log("Since box is checked, and it had a parent, I'm adding 2. My new skillValue is now: " + skillValue);
 		}
 		else {
-			skillValue = 2;
+			skillValue = profMod;
 			console.log("Well, you haven't set an attribute, but you'll get +", skillValue);
 		}
 	}
@@ -306,6 +277,27 @@ function proficiencyClick(proficiency) {
 
 function hasAttrVal(attribute) {
 	return document.getElementById(attribute).innerHTML != "";
+}
+
+function chosenProficiencies() {
+	for (var i=1; i<=18; i++){
+		var skill = "skill"+i;
+		var checked = $('#'+skill).is(':checked');
+		if (checked) {
+			var name = $('#'+skill).attr('name');
+			chosenProf.push(name);
+		}
+	}
+}
+function skillProcessing() {
+	for (var i=1; i<=18; i++){
+		var skill = "skill"+i;
+		// var checked = $('#'+skill).attr('checked', true);
+		// var checked = $('#'+skill)[0].checked;
+		var checked = $('#'+skill).is(':checked');
+		var name = $('#'+skill).attr('name');
+		console.log(name +" is checked? "+checked);
+	}
 }
 
 function checkSkillRoot(skill) {

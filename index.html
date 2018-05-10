@@ -282,10 +282,13 @@
 		function savechar() {
 			var char = new Object();
 			char.name = document.getElementById("charName").value;
+			saveStats();
+			chosenProficiencies();
 			char.stats = charStats;
 			char.skills = charSkills;
 			char.class = charClass;
 			char.level = charLevel;
+			char.proficiencies = chosenProf;
 			console.log(char);
 			var jsonData = JSON.stringify(char);
   			// now save json data to file
@@ -323,6 +326,7 @@
 			      //load class
 			      $("#classOptions").val(char.class).change();
 			     document.getElementById("loadchar").val="";
+			     document.getElementById("arrayBox").style.display="none";
 			  	}
 			    // This calls the read function, which triggers the callback
 			    // located above. It's a really indirect way to do things,
@@ -361,7 +365,6 @@
 			<td id="drag6" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
 		</table>
 
-		<button id="statSave" onclick = "saveStats()">Save Stats</button>
 
 		<form>
 			<table id = "skillTable">
