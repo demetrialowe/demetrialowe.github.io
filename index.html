@@ -321,12 +321,14 @@
 			      $("#intel").html(char.stats[3]);
 			      $("#wis").html(char.stats[4]);
 			      $("#cha").html(char.stats[5]);
-			      //load skills into table
-			      calculateSkills();
+			      
 			      //load class
 			      $("#classOptions").val(char.class).change();
 			     document.getElementById("loadchar").val="";
 			     document.getElementById("arrayBox").style.display="none";
+			     chosenProf = char.proficiencies;
+			     checkProficiencyBox();
+			     calculateSkills();
 			  	}
 			    // This calls the read function, which triggers the callback
 			    // located above. It's a really indirect way to do things,

@@ -250,25 +250,27 @@ function proficiencyClick(proficiency) {
 	skillName = proficiency.value;
 	skillRoot=checkSkillRoot(skillName);
 	skillValue = "";
-	profMod = getProfMod();
+	console.log(chosenProf);
 	if (proficiency.checked) {
 		if(hasAttrVal(skillRoot)) {
 			skillValue = calculateMods(skillRoot)+profMod;
-			console.log("Since box is checked, and it had a parent, I'm adding 2. My new skillValue is now: " + skillValue);
+			profMod = getProfMod();
+			chosenProf.push(skillName);
 		}
 		else {
 			skillValue = profMod;
-			console.log("Well, you haven't set an attribute, but you'll get +", skillValue);
+			profMod = getProfMod();
+			chosenProf.push(skillName);
 		}
 	}
 	else {
 		if(hasAttrVal(skillRoot)) {
 			skillValue = calculateMods(skillRoot);
-			console.log("Since box is NOT checked, and it had a parent, I'm recalculating. My new skillValue is now: " + skillValue);
+			removeElement(chosenProf, skillName);
 		}
 		else {
 			skillValue = "";
-			console.log("You have done... no work.... no printing for you");
+			removeElement(chosenProf, skillName);
 		}
 	}
 	document.getElementById(skillName).innerHTML = skillValue;
@@ -285,10 +287,25 @@ function chosenProficiencies() {
 		var checked = $('#'+skill).is(':checked');
 		if (checked) {
 			var name = $('#'+skill).attr('name');
-			chosenProf.push(name);
+			if(!chosenProf.includes(name)) {
+				chosenProf.push(name);
+			}
 		}
 	}
 }
+
+function checkProficiencyBox() {
+	for (var i=1; i<=18; i++){
+		var skill = "skill"+i;
+		$('#'+skill).prop('checked', false);
+	}
+	chosenProf.forEach(function(proficiency) {
+		console.log(proficiency);
+		var skill = skillProfMap[proficiency];
+		$('#'+skill).prop('checked', true);
+	});
+}
+
 function skillProcessing() {
 	for (var i=1; i<=18; i++){
 		var skill = "skill"+i;
@@ -313,3 +330,29 @@ function checkSkillRoot(skill) {
 	if(ChaArray.includes(skill)) return "cha";
 	else return "invalid skill";
 }
+
+function removeElement(arr, value) {
+	var index = arr.indexOf(value);
+	if (index > -1) {
+       arr.splice(index, 1);
+    }
+}
+
+var skillProfMap = {"acrobatics":"skill1", 
+"animal handling":"skill2",
+"arcana":"skill3",
+"athletics":"skill4",
+"deception":"skill5",
+"history":"skill6",
+"insight":"skill7",
+"intimidation":"skill8",
+"investigation":"skill9",
+"medicine":"skill10",
+"nature":"skill11",
+"perception":"skill12",
+"performance":"skill13",
+"persuasion":"skill14",
+"religion":"skill15",
+"sleight of hand":"skill16",
+"stealth":"skill17",
+"survival":"skill18"};
