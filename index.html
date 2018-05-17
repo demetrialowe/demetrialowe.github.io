@@ -326,8 +326,11 @@
 			      $("#classOptions").val(char.class).change();
 			     document.getElementById("loadchar").val="";
 			     document.getElementById("arrayBox").style.display="none";
+			     //put proficiencies in proficiency list
 			     chosenProf = char.proficiencies;
+			     //check correct proficiency boxes
 			     checkProficiencyBox();
+			     //recalculate skills
 			     calculateSkills();
 			  	}
 			    // This calls the read function, which triggers the callback

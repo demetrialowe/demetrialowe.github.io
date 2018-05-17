@@ -5,7 +5,6 @@ var charLevel = 1;
 var chosenProf = [];
 
 function rollStat3d6() {
-	console.log("Rolling 3d6");
 	var rolls=[];
 
 	document.getElementById("str").innerHTML = "";
@@ -14,18 +13,17 @@ function rollStat3d6() {
 	document.getElementById("intel").innerHTML = "";
 	document.getElementById("wis").innerHTML = "";
 	document.getElementById("cha").innerHTML = "";
+	calculateSkills();
 
 	var d1 = 1 + Math.floor(Math.random()*6);
 	var d2 = 1 + Math.floor(Math.random()*6);
 	var d3 = 1 + Math.floor(Math.random()*6);
 	var roll1 = d1 + d2 + d3;
-	console.log("1 " + roll1);
 
 	d1 = 1 + Math.floor(Math.random()*6);
 	d2 = 1 + Math.floor(Math.random()*6);
 	d3 = 1 + Math.floor(Math.random()*6);
 	var roll2 = d1 + d2 + d3;
-	console.log("2 " + roll2);
 
 	d1 = 1 + Math.floor(Math.random()*6);
 	d2 = 1 + Math.floor(Math.random()*6);
@@ -61,7 +59,6 @@ function rollStat3d6() {
 }
 
 function rollStat4d6Drop() {
-	console.log("Rolling 4d6 drop the lowest");
 	var rolls =[];
 
 	document.getElementById("str").innerHTML = "";
@@ -70,6 +67,7 @@ function rollStat4d6Drop() {
 	document.getElementById("intel").innerHTML = "";
 	document.getElementById("wis").innerHTML = "";
 	document.getElementById("cha").innerHTML = "";
+	calculateSkills();
 
 	var d1 = 1 + Math.floor(Math.random()*6);
 	var d2 = 1 + Math.floor(Math.random()*6);
@@ -137,6 +135,7 @@ function insertArray() {
   	document.getElementById("intel").innerHTML = "";
   	document.getElementById("wis").innerHTML = "";
   	document.getElementById("cha").innerHTML = "";
+  	calculateSkills();
 
   	document.getElementById("drag1").innerHTML = standardArray[0];
   	document.getElementById("drag2").innerHTML = standardArray[1];
@@ -250,17 +249,20 @@ function proficiencyClick(proficiency) {
 	skillName = proficiency.value;
 	skillRoot=checkSkillRoot(skillName);
 	skillValue = "";
-	console.log(chosenProf);
 	if (proficiency.checked) {
 		if(hasAttrVal(skillRoot)) {
-			skillValue = calculateMods(skillRoot)+profMod;
 			profMod = getProfMod();
-			chosenProf.push(skillName);
+			skillValue = calculateMods(skillRoot)+profMod;
+			if(!chosenProf.includes(skillName)) {
+				chosenProf.push(skillName);
+			}
 		}
 		else {
-			skillValue = profMod;
 			profMod = getProfMod();
-			chosenProf.push(skillName);
+			skillValue = profMod;
+			if(!chosenProf.includes(skillName)) {
+				chosenProf.push(skillName);
+			}
 		}
 	}
 	else {
@@ -300,7 +302,6 @@ function checkProficiencyBox() {
 		$('#'+skill).prop('checked', false);
 	}
 	chosenProf.forEach(function(proficiency) {
-		console.log(proficiency);
 		var skill = skillProfMap[proficiency];
 		$('#'+skill).prop('checked', true);
 	});
@@ -337,6 +338,17 @@ function removeElement(arr, value) {
        arr.splice(index, 1);
     }
 }
+
+function clearSkillBoxes() {
+	console.log("I'm clearing boxes maybe")
+	for (var i=0; i<skillList.length; i++) {
+		var name = skillList[i];
+		document.getElementById(name).innerHTML = '';
+	}
+}
+
+var skillList = ["acrobatics", "animal handling", "arcana", "athletics", "deception", "history", "insight", "intimidation", "investigation",
+"medicine", "nature", "perception", "performance", "persuasion", "religion", "sleight of hand", "stealth","survival"];
 
 var skillProfMap = {"acrobatics":"skill1", 
 "animal handling":"skill2",
