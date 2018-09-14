@@ -71,6 +71,11 @@ body {
 	border-top: none;
 }
 
+#charSummary span {
+	padding: 10px;
+	float: right;
+}
+
 /*Stat Table Format*/
  #statTable {
  	border-collapse: collapse;

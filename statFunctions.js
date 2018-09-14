@@ -214,6 +214,12 @@ function calculateMods(stat) {
 	return modifier;
 }
 
+function updateSummary() {
+	document.getElementById("nameSum").innerHTML = "Name is: " + document.getElementById("charName").value;
+	document.getElementById("levelSum").innerHTML = "Level: " + charLevel;
+	document.getElementById("classSum").innerHTML = "Class: " + readableClass[charClass];
+}
+
 function getProfMod() {
 	if (charLevel <= 4) return 2;
 	if (charLevel >= 5 && charLevel <=8) return 3;
@@ -384,3 +390,15 @@ var skillProfMap = {"acrobatics":"skill1",
 "sleight of hand":"skill16",
 "stealth":"skill17",
 "survival":"skill18"};
+
+var readableClass = {"barbarianClass":"Barbarian",
+"bardClass":"Bard",
+"clericClass":"Cleric",
+"druidClass":"Druid",
+"fighterClass":"Fighter",
+"monkClass":"Monk",
+"paladinClass":"Paladin",
+"rangerClass":"Ranger",
+"sorcererClass":"Sorcerer",
+"warlockClass":"Warlock",
+"wizardClass":"Wizard"};

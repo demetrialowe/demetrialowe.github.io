@@ -14,6 +14,11 @@
 		<button class="menu-content" onclick="showHide(event,'class-level')">Choose your Class</button>
 		<button class="menu-content" onclick="showHide(event,'stat-skill')">Assign your Stats</button>
 		<button class="menu-content" onclick="showHide(event, 'saveThings')"> Save your Character</button>
+		<div id="charSummary">
+			<span id="classSum"></span>	
+			<span id="levelSum"></span>
+			<span id="nameSum"></span>		
+		</div>
 	</div>
 	<br>
 
@@ -32,6 +37,14 @@
 			<option value="sorcererClass">Sorcerer</option>
 			<option value="warlockClass">Warlock</option>
 			<option value="wizardClass">Wizard</option>
+		</select>
+
+		<select name="levelChoice" id="levelChoice">
+			<option selected="selected" value=1>1</option>
+			<option value= 2>2</option>
+			<option value=3>3</option>
+			<option value=4>4</option>
+			<option value=5>5</option>
 		</select>
 
 		<div id="barbarianClass" class="charClasses">
@@ -248,14 +261,21 @@
 	</div>
 
 	<script> //this lets the different class divs show, and other things
-		$("select").change(function() {
+		$("#classOptions").change(function() {
 			$(".charClasses").hide();
 			$('#' + $(this).val()).show();
 		});
 
-		$("select").change(function() {
+		$("#classOptions").change(function() {
 			charClass = $(this).val();
-			//console.log(charClass);
+			updateSummary();
+		});
+
+		$("#levelChoice").change(function() {
+		charLevel= $(this).val();
+		calculateSkills();
+		updateSummary();
+		//console.log(charLevel);
 		});
 
 		function download(text, name, type) {
@@ -313,12 +333,15 @@
 			      $("#classOptions").val(char.class).change();
 			     document.getElementById("loadchar").val="";
 			     document.getElementById("arrayBox").style.display="none";
+			     //load level
+			     $("#levelChoice").val(char.level).change();
 			     //put proficiencies in proficiency list
 			     chosenProf = char.proficiencies;
 			     //check correct proficiency boxes
 			     checkProficiencyBox();
 			     //recalculate skills
 			     calculateSkills();
+			     updateSummary();
 			  	}
 			    // This calls the read function, which triggers the callback
 			    // located above. It's a really indirect way to do things,
@@ -424,7 +447,7 @@
 	</div>
 	
 	<div class="tab" id="saveThings" style="clear: both;">
-		<input type="text" id="charName">
+		<input type="text" id="charName" onchange="updateSummary()">
 		<button onclick="savechar()">Save</button>
 		  <input type="button" value="Load Character" onclick="document.getElementById('loadchar').click();" />
 		<form id="loadcharform">
