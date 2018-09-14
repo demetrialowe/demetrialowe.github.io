@@ -11,20 +11,13 @@
 <body>
 	<script type="text/javascript" src="statFunctions.js"></script>
 	<div class="menu">
-		<div class="dropdown-mine">
-			<span>Roll Stats</span>
-			<div class="dropdown-content">
-				<button onclick="rollStat3d6()">3d6</button>
-				<button onclick="rollStat4d6Drop()">4d6 Drop Lowest</button>
-				<button onclick="insertArray()">Standard Array Input</button>
-			</div>
-		</div>
-		<p class="menu-content">Hi I'm another menu option</p>
-		<p class="menu-content">Me too!</p>
+		<button class="menu-content" onclick="showHide(event,'class-level')">Choose your Class</button>
+		<button class="menu-content" onclick="showHide(event,'stat-skill')">Assign your Stats</button>
+		<button class="menu-content" onclick="showHide(event, 'saveThings')"> Save your Character</button>
 	</div>
 	<br>
 
-	<div class="column">
+	<div class="tab" id="class-level" style="clear:both;">
 		<select name="classOptions" id="classOptions">
 			<option selected="selected" value ="chooseClass">Choose a class</option>
 			<option value="barbarianClass">Barbarian</option>
@@ -195,7 +188,6 @@
 				</tr>
 			</table>
 		</div>
-
 		<div id="druidClass" class="charClasses">
 			<p> Hit Die: d8</p>
 			<p> Skill Proficiencies: Choose any three.</p>
@@ -245,8 +237,6 @@
 				</tr>
 			</table>
 		</div>
-
-		</div>
 		<div id="fighterClass" class="charClasses"></div>
 		<div id="monkClass" class="charClasses"></div>
 		<div id="paladinClass" class="charClasses"></div>
@@ -255,9 +245,6 @@
 		<div id="sorcererClass" class="charClasses"></div>
 		<div id="warlockClass" class="charClasses"></div>
 		<div id="wizardClass" class="charClasses"></div>
-
-
-
 	</div>
 
 	<script> //this lets the different class divs show, and other things
@@ -345,7 +332,25 @@
 	</script>
 
 
-	<div class = "column">
+	<div class = "tab" id="stat-skill" style="clear:both;">
+		<div class="dropdown-mine">
+			<div style="float: left;">Roll Stats</div>
+				<div class="dropdown-content">
+					<button onclick="rollStat3d6()">3d6</button>
+					<button onclick="rollStat4d6Drop()">4d6 Drop Lowest</button>
+					<button onclick="insertArray()">Standard Array Input</button>
+				</div>
+		</div>
+		
+		<table id="arrayBox" ondrop="drop(event)" ondragover="allowDrop(event)">
+			<td id="drag1" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="drag2" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="drag3" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="drag4" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="drag5" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="drag6" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+		</table>
+
 		<table id="statTable">
 			<tr><td class="StatHover">STR<span class ="StatHoverText"> <strong>Strength</strong>: This is your character's raw physical power. It is used in the skill check <i>Athletics</i>. It is also used to determine both whether you hit and how much damage you do using any melee weapons that are not based in finesse (such as <i> battle axes, longswords, and clubs</i>).</span></td><td id = "str" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></td></tr>
 
@@ -360,19 +365,7 @@
 			<tr><td class ="StatHover">CHA<span class ="StatHoverText"><strong>Charisma</strong>: This is your character's charm. It is used in the skill checks <i>Deception, Intimidation, Performance,</i> and <i>Persuasion</i>. If you are playing <i>Bard, Paladin, Sorcerer</i> or <i>Warlock</i>, it will also factor into your character's spellcasting ability.</span></td><td id = "cha"  draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></td></tr>
 		</table>
 
-		<table id="arrayBox" ondrop="drop(event)" ondragover="allowDrop(event)">
-
-			<td id="drag1" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
-			<td id="drag2" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
-			<td id="drag3" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
-			<td id="drag4" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
-			<td id="drag5" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
-			<td id="drag6" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
-		</table>
-
-
-		<form>
-			<table id = "skillTable">
+		<table id = "skillTable">
 				<tr>
 					<td>Acrobatics</td><td><input type="checkbox" id="skill1" name="acrobatics" value="acrobatics" onclick="proficiencyClick(this)"></td><td id="acrobatics"></td>
 				</tr>
@@ -400,47 +393,44 @@
 				<tr>
 					<td>Investigation</td><td><input type="checkbox" id="skill9" name="investigation" value="investigation" onclick="proficiencyClick(this)"></td><td id="investigation"></td>
 				</tr>
-					<tr>
-						<td>Medicine</td><td><input type="checkbox" id="skill10" name="medicine" value="medicine" onclick="proficiencyClick(this)"></td><td id="medicine"></td>
-					</tr>
-					<tr>
-						<td>Nature</td><td><input type="checkbox" id="skill11" name="nature" value="nature" onclick="proficiencyClick(this)"></td><td id="nature"></td>
-					</tr>
-					<tr>
-						<td>Perception</td><td><input type="checkbox" id="skill12" name="perception" value="perception" onclick="proficiencyClick(this)"></td><td id="perception"></td>
-					</tr>
-					<tr>
-						<td>Performance</td><td><input type="checkbox" id="skill13" name="performance" value="performance" onclick="proficiencyClick(this)"></td><td id="performance"></td>
-					</tr>
-					<tr>
-						<td>Persuasion</td><td><input type="checkbox" id="skill14" name="persuasion" value="persuasion" onclick="proficiencyClick(this)"></td><td id="persuasion">
+				<tr>
+					<td>Medicine</td><td><input type="checkbox" id="skill10" name="medicine" value="medicine" onclick="proficiencyClick(this)"></td><td id="medicine"></td>
+				</tr>
+				<tr>
+					<td>Nature</td><td><input type="checkbox" id="skill11" name="nature" value="nature" onclick="proficiencyClick(this)"></td><td id="nature"></td>
+				</tr>
+				<tr>
+					<td>Perception</td><td><input type="checkbox" id="skill12" name="perception" value="perception" onclick="proficiencyClick(this)"></td><td id="perception"></td>
+				</tr>
+				<tr>
+					<td>Performance</td><td><input type="checkbox" id="skill13" name="performance" value="performance" onclick="proficiencyClick(this)"></td><td id="performance"></td>
+				</tr>
+				<tr>
+					<td>Persuasion</td><td><input type="checkbox" id="skill14" name="persuasion" value="persuasion" onclick="proficiencyClick(this)"></td><td id="persuasion">
 						</td></tr>
-					<tr>
-						<td>Religion</td><td><input type="checkbox" id="skill15" name="religion" value="religion"></td><td id="religion" onclick="proficiencyClick(this)"></td>
-					</tr>								
-					<tr>
-						<td>Sleight of Hand</td><td><input type="checkbox" id="skill16" name="sleight of hand" value="sleight of hand" onclick="proficiencyClick(this)"></td><td id="sleight of hand"></td>
-					</tr>
-					<tr>
-						<td>Stealth</td><td><input type="checkbox" id="skill17" name="stealth" value="stealth" onclick="proficiencyClick(this)"></td><td id="stealth"></td>
-					</tr>
-					<tr>
-						<td>Survival</td><td><input type="checkbox" id="skill18" name="survival" value="survival" onclick="proficiencyClick(this)"></td><td id="survival"></td>								
-					</tr>
-				</table>
-			</form>
-
-
+				<tr>
+					<td>Religion</td><td><input type="checkbox" id="skill15" name="religion" value="religion"></td><td id="religion" onclick="proficiencyClick(this)"></td>
+				</tr>								
+				<tr>
+					<td>Sleight of Hand</td><td><input type="checkbox" id="skill16" name="sleight of hand" value="sleight of hand" onclick="proficiencyClick(this)"></td><td id="sleight of hand"></td>
+				</tr>
+				<tr>
+					<td>Stealth</td><td><input type="checkbox" id="skill17" name="stealth" value="stealth" onclick="proficiencyClick(this)"></td><td id="stealth"></td>
+				</tr>
+				<tr>
+					<td>Survival</td><td><input type="checkbox" id="skill18" name="survival" value="survival" onclick="proficiencyClick(this)"></td><td id="survival"></td>								
+				</tr>
+		</table>
 	</div>
 	
-	<div class="column">
+	<div class="tab" id="saveThings" style="clear: both;">
 		<input type="text" id="charName">
 		<button onclick="savechar()">Save</button>
 		  <input type="button" value="Load Character" onclick="document.getElementById('loadchar').click();" />
 		<form id="loadcharform">
  			<input type="file" multiple style="display:none;" id="loadchar" name="file" onchange="loadChar(); "/> 
  		</form>
-	</div>
+ 	</div>
 
 </body>
 </html>

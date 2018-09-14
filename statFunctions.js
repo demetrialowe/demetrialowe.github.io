@@ -307,6 +307,22 @@ function checkProficiencyBox() {
 	});
 }
 
+function showHide(evt, tab) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tab");
+		for (i=0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+
+		tablinks = document.getElementsByClassName("menu-content");
+		for (i = 0; i < tablinks.length; i++){
+			tablinks[i].className=tablinks[i].className.replace(" active", "");
+		}
+
+		document.getElementById(tab).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+
 function skillProcessing() {
 	for (var i=1; i<=18; i++){
 		var skill = "skill"+i;
