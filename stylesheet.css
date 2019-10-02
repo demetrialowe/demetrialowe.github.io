@@ -44,8 +44,47 @@ body {
 	background-color: #E3E3E3; /*#cec5bb*/
 	margin: 0;
 }
+/*special stuff for the moveable box*/
+#moveDiv {
+	position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    cursor: move;
+    resize:both;
+    overflow: auto;
+    top: 10%; left: 80%;
+}
 
+#moveDivHeader {
+	background-color: #A4A4A4;
+}
 
+.hideableContent {
+	display: block;
+}
+
+/* end special stuff*/
+
+#savebutton {
+	background-color: inherit;
+    float: right;
+    border: 1px solid black;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.menu input  {
+    float: left;
+    border: 1px solid black;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
 .menu button {
     background-color: inherit;
     float: left;

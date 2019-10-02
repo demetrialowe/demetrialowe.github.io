@@ -12,14 +12,28 @@
 	<script type="text/javascript" src="statFunctions.js"></script>
 	<div class="menu">
 		<button class="menu-content" onclick="showHide(event,'class-level')">Choose your Class</button>
+		<button class="menu-content" onclick="showHide(event,'race')">Choose your race</button>
+		<button class="menu-content" onclick="showHide(event,'background')">Choose a Background</button>
 		<button class="menu-content" onclick="showHide(event,'stat-skill')">Assign your Stats</button>
-		<button class="menu-content" onclick="showHide(event, 'saveThings')"> Save your Character</button>
+		<input type="text" id="charName" onchange="updateSummary()">
+		<button id="savebutton" onclick="savechar()">Save</button>
+		<input type="button" value="Load Character" onclick="document.getElementById('loadchar').click();" />
+		<form id="loadcharform">
+ 			<input type="file" multiple style="display:none;" id="loadchar" name="file" onchange="loadChar(); "/> 
+ 		</form>
 		<div id="charSummary">
 			<span id="classSum"></span>	
 			<span id="levelSum"></span>
 			<span id="nameSum"></span>		
 		</div>
 	</div>
+
+	<div id="moveDiv">
+		<div id="moveDivHeader">Bonuses (Click&Drag)</div>
+		<p class="hideableContent">Content of bonuses</p>
+		<p class="hideableContent">Will fill later</p>
+	</div>
+
 	<br>
 
 	<div class="tab" id="class-level" style="clear:both;">
@@ -278,6 +292,8 @@
 		//console.log(charLevel);
 		});
 
+		 dragElement(document.getElementById('moveDiv'));
+
 		function download(text, name, type) {
 			var a = document.createElement("a");
 			var file = new Blob([text], {type: type});
@@ -354,6 +370,16 @@
 		}
 	</script>
 
+	<div class="tab" id="race" style="clear:both">
+		<select name="raceOptions">
+			<option value="elf">Elf</option>
+			<option value="human">Human</option>
+			<option value="dwarf">Dwarf</option>
+		</select>
+	</div>
+
+	<div class="tab" id="background" style="clear:both">
+	</div>
 
 	<div class = "tab" id="stat-skill" style="clear:both;">
 		<div class="dropdown-mine">
@@ -445,15 +471,6 @@
 				</tr>
 		</table>
 	</div>
-	
-	<div class="tab" id="saveThings" style="clear: both;">
-		<input type="text" id="charName" onchange="updateSummary()">
-		<button onclick="savechar()">Save</button>
-		  <input type="button" value="Load Character" onclick="document.getElementById('loadchar').click();" />
-		<form id="loadcharform">
- 			<input type="file" multiple style="display:none;" id="loadchar" name="file" onchange="loadChar(); "/> 
- 		</form>
- 	</div>
 
 </body>
 </html>

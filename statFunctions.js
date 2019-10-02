@@ -4,6 +4,7 @@ var charClass = "";
 var charLevel = 1;
 var chosenProf = [];
 
+
 function rollStat3d6() {
 	var rolls=[];
 
@@ -153,7 +154,7 @@ function saveStats() {
 	if (document.getElementById("str").innerHTML == "" || document.getElementById("dex").innerHTML == "" || 
 		document.getElementById("con").innerHTML == "" || document.getElementById("intel").innerHTML == "" ||
 		document.getElementById("wis").innerHTML == "" || document.getElementById("cha").innerHTML == "") {
-		alert("Please assign all of your stats!")
+		alert("Please assign all of your stats!");
 	}
 	else {
 		charStats.push(document.getElementById("str").innerHTML);
@@ -207,6 +208,7 @@ function drop(ev) {
 	/*if I want to use drag and drop later I'm definitely going to have to rework this*/
 	calculateSkills();
 }
+
 
 function calculateMods(stat) {
 	if (document.getElementById(stat).innerHTML == "") {return ""};
@@ -315,29 +317,60 @@ function checkProficiencyBox() {
 
 function showHide(evt, tab) {
 		var i, tabcontent, tablinks;
+		//this hides all tabs
 		tabcontent = document.getElementsByClassName("tab");
 		for (i=0; i < tabcontent.length; i++) {
 			tabcontent[i].style.display = "none";
 		}
-
+		//this helps to hide all the tabs by making sure none are "active"
 		tablinks = document.getElementsByClassName("menu-content");
 		for (i = 0; i < tablinks.length; i++){
 			tablinks[i].className=tablinks[i].className.replace(" active", "");
 		}
-
+		//this finally shows the one you click
 		document.getElementById(tab).style.display = "block";
 		evt.currentTarget.className += " active";
 	}
 
-function skillProcessing() {
-	for (var i=1; i<=18; i++){
-		var skill = "skill"+i;
-		// var checked = $('#'+skill).attr('checked', true);
-		// var checked = $('#'+skill)[0].checked;
-		var checked = $('#'+skill).is(':checked');
-		var name = $('#'+skill).attr('name');
-		console.log(name +" is checked? "+checked);
-	}
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "Header")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
 }
 
 function checkSkillRoot(skill) {
@@ -401,4 +434,7 @@ var readableClass = {"barbarianClass":"Barbarian",
 "rangerClass":"Ranger",
 "sorcererClass":"Sorcerer",
 "warlockClass":"Warlock",
-"wizardClass":"Wizard"};
+"wizardClass":"Wizard",
+"":"No Class Chosen"};
+
+var raceAttr = {"elf":["dex", 2], "human":["all", 1], "dwarf":["con", 2]};
