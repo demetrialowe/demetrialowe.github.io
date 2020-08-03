@@ -103,7 +103,7 @@ var raceAttr = {"hill dwarf":[0,0,2,0,1,0],
 "mountain dwarf":[2,0,2,0,0,0], 
 "high elf":[0,2,0,1,0,0], 
 "wood elf":[0,2,0,0,1,0], 
-"drow":[0,2,0,0,0,1]
+"drow":[0,2,0,0,0,1],
 "lightfoot halfling":[0,2,0,0,0,1],
 "stout halfling":[0,2,1,0,0,0],
 "human":[1,1,1,1,1,1],
