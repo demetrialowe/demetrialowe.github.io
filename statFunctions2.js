@@ -3,6 +3,9 @@ var charSkills = [];
 var charProficiency = [];
 var charLevel = 1;
 
+function rollStat3d6() {
+	console.log("Does this work");
+}
 
 //this function rolls a die with the dictated number of sides, returns int result
 function rollDie(sides) {
