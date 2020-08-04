@@ -2,12 +2,37 @@
 <html>
 	<head>
 		<title>Character Builder 2.0</title>
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="statFunctions2.js"></script>
 	</head>
 	<body>
-		<script type="text/javascript" src="statFunctions2.js"></script>
 		<p> Hello World</p>
 		<p id="box"></p>
 		<button onclick="rollStat3d6()">3d6</button>
 		<button onclick="rollStat4d6()">4d6 drop the lowest</button>
+
+		<table id="arrayBox" ondrop="drop(event)">
+			<td id="roll0" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="roll1" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="roll2" 1draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="roll3" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="roll4" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+			<td id="roll5" draggable="true" ondragstart="drag(event)" width="336" height="69"></td>
+		</table>
+
+		<table id="statTable">
+			<tr><td class="StatHover">STR</td><td id="STR" draggable="true" ondragstart="drag(event)" ondrop="dropStat(event)" ondragover="allowDrop(event)"></td></tr>
+
+			<tr><td class ="StatHover">DEX</td><td id="DEX" draggable="true" ondragstart="drag(event)" ondrop="dropStat(event)" ondragover="allowDrop(event)"></td></tr>
+
+			<tr><td class ="StatHover">CON</td><td id="CON" draggable="true" ondragstart="drag(event)" ondrop="dropStat(event)" ondragover="allowDrop(event)"></td></tr>
+
+			<tr><td class ="StatHover">INT</td><td id="INTEL" draggable="true" ondragstart="drag(event)" ondrop="dropStat(event)" ondragover="allowDrop(event)"></td></tr>
+
+			<tr><td class ="StatHover">WIS</td><td id="WIS" draggable="true" ondragstart="drag(event)" ondrop="dropStat(event)" ondragover="allowDrop(event)"></td></tr>
+
+			<tr><td class ="StatHover">CHA</td><td id="CHA" draggable="true" ondragstart="drag(event)" ondrop="dropStat(event)" ondragover="allowDrop(event)"></td></tr>
+		</table>
 	</body>
+</html>
