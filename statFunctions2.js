@@ -3,7 +3,6 @@ var charSkills = [];
 var charProficiency = [];
 var charLevel = 1;
 
-
 //this function rolls a die with the dictated number of sides, returns int result
 function rollDie(sides) {
 	return (1 + Math.floor(Math.random()*sides));
@@ -54,7 +53,8 @@ function rollStat3d6() {
 		i++;
 	}
 	rolls.sort(function(a,b){return b-a}); // b-a because descending order is desired
-	writeToStatTable(rolls);
+	console.log(rolls);
+	return rolls;
 }
 
 
